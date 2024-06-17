@@ -12,8 +12,8 @@ jobs:  # Tarefas a serem executadas
     steps:  # Passos da tarefa
     - uses: actions/checkout@v3  # Faz checkout do código do repositório
     - name: Build the Docker image  # Nome do passo
-      run: docker build . --file Dockerfile --tag ${{ secrets.GITHUB_TOKEN }}/hello-world-streamlit  # Comando para construir a imagem
+      run: docker build . --file Dockerfile --tag ${{ secrets.HELLO_TOKEN }}/hello-world-streamlit  # Comando para construir a imagem
     - name: Publish to GitHub Packages  # Nome do passo
-      run: |  # Executa múltiplos comandos em sequência
-        echo ${{ secrets.HELLO_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin  # Faz login no GitHub Packages
-        docker push ${{ secrets.HELLO_TOKEN }}/hello-world-streamlit  # Envia a imagem para o GitHub Packages
+      run: |
+        echo ${{ secrets.HELLO_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+        docker push ${{ secrets.HELLO_TOKEN }}/hello-world-streamlit
